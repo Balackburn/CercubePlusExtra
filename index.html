@@ -629,7 +629,7 @@
       </div>
     </header>
     <div class="app__buttons app__buttons--mobile container">
-      <a class="app__button-ios" href="https://tinyurl.com/CercubePlusSource" target="_blank" title="Add to Altstore">
+      <a class="app__button-ios" href="altstore://source/?url=https://raw.githubusercontent.com/CercubeSource/CercubePlusAltstore/main/apps.json" target="_blank" title="Add to Altstore">
         <img alt="Add to Altstore" src="./images/image_4.png" />
       </a>
       <a class="app__button-web" href="https://github.com/Balackburn/CercubePlusExtra" target="_blank"
@@ -777,18 +777,21 @@
     const repoOwner = "Balackburn";
     const repoName = "CercubePlusExtra";
     const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/releases/latest`;
-
+  
     async function updateDownloadLink() {
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();
-
+  
         // Find the asset with the ".ipa" file extension
         const ipaAsset = data.assets.find((asset) => asset.name.endsWith('.ipa'));
-
+  
         if (ipaAsset) {
-          const downloadLink = document.getElementById('download-link');
-          downloadLink.href = ipaAsset.browser_download_url;
+          // Update download link for both desktop and mobile views
+          const downloadLinks = document.querySelectorAll('#download-link, .app__button-download');
+          downloadLinks.forEach((downloadLink) => {
+            downloadLink.href = ipaAsset.browser_download_url;
+          });
         } else {
           console.error("No .ipa file found in the latest release.");
         }
@@ -796,7 +799,7 @@
         console.error("Error fetching latest release information:", error);
       }
     }
-
+  
     updateDownloadLink();
   </script>
 </body>
