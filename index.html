@@ -1,609 +1,615 @@
 <html dir="auto" lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="google-site-verification" content="pteA0I0cOIBT_azStutHoE1033vCluAlbT2VRQj_BGg" />
-    <title>CercubePlusExtra - Supercharge Your YouTube Experience</title>
-    <meta content="CercubePlusExtra is an iOS app that enhances your YouTube experience with over 15 tweaks, including ad-blocking, background playback, and more." name="description" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta content="CercubePlusExtra - Supercharge Your YouTube Experience" property="og:title" />
-    <meta content="CercubePlusExtra is an iOS app that enhances your YouTube experience with over 15 tweaks, including ad-blocking, background playback, and more." property="og:description" />
-    <meta content="./images/image_0.png" property="og:image" />
-  </head>
-  <style>
-    .tobi {
-      bottom: 0;
-      box-sizing: border-box;
-      contain: strict;
-      font-size: 18px;
-      left: 0;
-      line-height: 1.5555555555555556;
-      overflow: hidden;
-      position: fixed;
-      right: 0;
-      top: 0;
-      z-index: 1337;
-    }
+  <meta charset="utf-8" />
+  <meta name="google-site-verification" content="pteA0I0cOIBT_azStutHoE1033vCluAlbT2VRQj_BGg" />
+  <title>CercubePlusExtra - Supercharge Your YouTube Experience</title>
+  <meta
+    content="CercubePlusExtra is an iOS app that enhances your YouTube experience with over 15 tweaks, including ad-blocking, background playback, and more."
+    name="description" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="CercubePlusExtra - Supercharge Your YouTube Experience" property="og:title" />
+  <meta
+    content="CercubePlusExtra is an iOS app that enhances your YouTube experience with over 15 tweaks, including ad-blocking, background playback, and more."
+    property="og:description" />
+  <meta content="./images/image_0.png" property="og:image" />
+</head>
+<style>
+  .tobi {
+    bottom: 0;
+    box-sizing: border-box;
+    contain: strict;
+    font-size: 18px;
+    left: 0;
+    line-height: 1.5555555555555556;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1337;
+  }
 
-    .tobi[aria-hidden="true"] {
-      display: none;
-    }
+  .tobi[aria-hidden="true"] {
+    display: none;
+  }
 
-    .tobi *,
-    .tobi *::before,
-    .tobi *::after {
-      box-sizing: inherit;
-    }
+  .tobi *,
+  .tobi *::before,
+  .tobi *::after {
+    box-sizing: inherit;
+  }
 
-    .tobi-is-open {
-      overflow-y: hidden;
-    }
+  .tobi-is-open {
+    overflow-y: hidden;
+  }
 
-    .tobi__slider {
-      bottom: 0;
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-      will-change: transform;
-    }
+  .tobi__slider {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    will-change: transform;
+  }
 
+  .tobi__slider:not(.tobi__slider--is-dragging) {
+    transition-duration: 0.3s;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  @media screen and (prefers-reduced-motion: reduce) {
     .tobi__slider:not(.tobi__slider--is-dragging) {
-      transition-duration: 0.3s;
-      transition-property: transform;
-      transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+      transition: none;
     }
+  }
 
-    @media screen and (prefers-reduced-motion: reduce) {
-      .tobi__slider:not(.tobi__slider--is-dragging) {
-        transition: none;
-      }
-    }
+  .tobi__slider--is-draggable [data-type] {
+    cursor: -webkit-grab;
+    cursor: grab;
+  }
 
-    .tobi__slider--is-draggable [data-type] {
-      cursor: -webkit-grab;
-      cursor: grab;
-    }
+  .tobi__slider--is-dragging [data-type] {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+  }
 
-    .tobi__slider--is-dragging [data-type] {
-      cursor: -webkit-grabbing;
-      cursor: grabbing;
-    }
+  .tobi__slide {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+  }
 
-    .tobi__slide {
-      align-items: center;
-      display: flex;
-      height: 100%;
-      justify-content: center;
-      width: 100%;
-    }
+  .tobi__slide:not(.tobi__slide--is-active) {
+    visibility: hidden;
+  }
 
-    .tobi__slide:not(.tobi__slide--is-active) {
-      visibility: hidden;
-    }
+  .tobi [data-type] {
+    max-height: 85vh;
+    max-width: 85vw;
+    overflow: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
 
-    .tobi [data-type] {
-      max-height: 85vh;
-      max-width: 85vw;
-      overflow: hidden;
-      overflow-y: auto;
-      overscroll-behavior: contain;
-    }
+  .tobi [data-type] iframe,
+  .tobi [data-type] video {
+    display: block !important;
+  }
 
-    .tobi [data-type] iframe,
-    .tobi [data-type] video {
-      display: block !important;
-    }
+  .tobi [data-type]>figure {
+    margin: 0;
+    position: relative;
+  }
 
-    .tobi [data-type]>figure {
-      margin: 0;
-      position: relative;
-    }
+  .tobi [data-type]>figure>img {
+    display: block;
+    height: auto;
+    max-height: 85vh;
+    max-width: 85vw;
+    width: auto;
+  }
 
-    .tobi [data-type]>figure>img {
-      display: block;
-      height: auto;
-      max-height: 85vh;
-      max-width: 85vw;
-      width: auto;
-    }
+  .tobi [data-type]>figure>figcaption {
+    background-color: rgba(255, 255, 255, 0.94);
+    bottom: 0;
+    color: #1a2a3a;
+    padding: 0.22222em 0.44444em;
+    position: absolute;
+    white-space: pre-wrap;
+    width: 100%;
+  }
 
-    .tobi [data-type]>figure>figcaption {
-      background-color: rgba(255, 255, 255, 0.94);
-      bottom: 0;
-      color: #1a2a3a;
-      padding: 0.22222em 0.44444em;
-      position: absolute;
-      white-space: pre-wrap;
-      width: 100%;
-    }
+  .tobi [data-type="html"] video {
+    cursor: auto;
+    max-height: 85vh;
+    max-width: 85vw;
+  }
 
-    .tobi [data-type="html"] video {
-      cursor: auto;
-      max-height: 85vh;
-      max-width: 85vw;
-    }
+  .tobi [data-type="iframe"] {
+    /* Fix iframe scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+    transform: translate3d(0, 0, 0);
+  }
 
-    .tobi [data-type="iframe"] {
-      /* Fix iframe scrolling on iOS */
-      -webkit-overflow-scrolling: touch;
-      transform: translate3d(0, 0, 0);
-    }
+  .tobi [data-type="iframe"] iframe {
+    height: 85vh;
+    width: 85vw;
+  }
 
-    .tobi [data-type="iframe"] iframe {
-      height: 85vh;
-      width: 85vw;
-    }
+  .tobi>button {
+    background-color: transparent;
+    border: 0.05556em solid transparent;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    line-height: 1;
+    margin: 0;
+    opacity: 0.5;
+    padding: 0.22222em;
+    position: absolute;
+    touch-action: manipulation;
+    transition-duration: 0.3s;
+    transition-property: opacity, transform;
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    will-change: opacity, transform;
+    z-index: 1;
+  }
 
+  @media screen and (prefers-reduced-motion: reduce) {
     .tobi>button {
-      background-color: transparent;
-      border: 0.05556em solid transparent;
-      color: #fff;
-      cursor: pointer;
-      font: inherit;
-      line-height: 1;
-      margin: 0;
-      opacity: 0.5;
-      padding: 0.22222em;
-      position: absolute;
-      touch-action: manipulation;
-      transition-duration: 0.3s;
-      transition-property: opacity, transform;
-      transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-      will-change: opacity, transform;
-      z-index: 1;
+      transition: none;
+      will-change: opacity;
     }
+  }
 
-    @media screen and (prefers-reduced-motion: reduce) {
-      .tobi>button {
-        transition: none;
-        will-change: opacity;
-      }
-    }
+  .tobi>button svg {
+    pointer-events: none;
+    stroke: #fff;
+    stroke-width: 1;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    fill: none;
+    color: #fff;
+  }
 
-    .tobi>button svg {
-      pointer-events: none;
-      stroke: #fff;
-      stroke-width: 1;
-      stroke-linecap: square;
-      stroke-linejoin: miter;
-      fill: none;
-      color: #fff;
-    }
+  .tobi>button:active,
+  .tobi>button:focus,
+  .tobi>button:hover {
+    opacity: 1;
+    transform: scale(0.84);
+  }
+
+  @media screen and (prefers-reduced-motion: reduce) {
 
     .tobi>button:active,
     .tobi>button:focus,
     .tobi>button:hover {
-      opacity: 1;
-      transform: scale(0.84);
+      transform: none;
     }
+  }
 
-    @media screen and (prefers-reduced-motion: reduce) {
+  .tobi>button.tobi__prev,
+  .tobi>button.tobi__next {
+    top: calc(50% - 1.94444em);
+  }
 
-      .tobi>button:active,
-      .tobi>button:focus,
-      .tobi>button:hover {
-        transform: none;
-      }
+  .tobi>button.tobi__prev svg,
+  .tobi>button.tobi__next svg {
+    height: 3.88889em;
+    width: 3.88889em;
+  }
+
+  .tobi>button.tobi__prev {
+    left: 0;
+  }
+
+  .tobi>button.tobi__next {
+    right: 0;
+  }
+
+  .tobi>button.tobi__close {
+    right: 0.27778em;
+    top: 1em;
+  }
+
+  .tobi>button.tobi__close svg {
+    height: 3.33333em;
+    width: 3.33333em;
+  }
+
+  .tobi>button:disabled,
+  .tobi>button[aria-hidden="true"] {
+    display: none;
+  }
+
+  .tobi__counter {
+    background-color: transparent;
+    color: #fff;
+    font-size: 1.11111em;
+    left: 1em;
+    line-height: 1;
+    position: absolute;
+    top: 2.22222em;
+    z-index: 1;
+  }
+
+  .tobi__counter[aria-hidden="true"] {
+    display: none;
+  }
+
+  .tobi-loader {
+    display: inline-block;
+    height: 5.55556em;
+    left: calc(50% - 2.77778em);
+    position: absolute;
+    top: calc(50% - 2.77778em);
+    width: 5.55556em;
+  }
+
+  .tobi-loader::before {
+    animation: spin 1s infinite;
+    border-radius: 100%;
+    border: 0.22222em solid #949ba3;
+    border-top-color: #fff;
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+  .tobi-zoom {
+    border: 0;
+    box-shadow: none;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .tobi-zoom img {
+    display: block;
+  }
+
+  .tobi-zoom__icon {
+    bottom: 0;
+    color: #fff;
+    line-height: 1;
+    position: absolute;
+    right: 0;
+    padding: 10;
+
+  }
+
+  .tobi-zoom__icon svg {
+    color: #fff;
+    fill: none;
+    height: 1.11111em;
+    padding: 0.22222em;
+    pointer-events: none;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    stroke-width: 2;
+    stroke: #fff;
+    width: 1.11111em;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
     }
+  }
+</style>
+<style>
+  :root {
+    --font-xl: 42px;
+    --font-lg: 24px;
+    --font-md: 20px;
+    --font-sm: 18px;
+    --font-xs: 16px;
+    --font-xxs: 14px;
+  }
 
-    .tobi>button.tobi__prev,
-    .tobi>button.tobi__next {
-      top: calc(50% - 1.94444em);
-    }
-
-    .tobi>button.tobi__prev svg,
-    .tobi>button.tobi__next svg {
-      height: 3.88889em;
-      width: 3.88889em;
-    }
-
-    .tobi>button.tobi__prev {
-      left: 0;
-    }
-
-    .tobi>button.tobi__next {
-      right: 0;
-    }
-
-    .tobi>button.tobi__close {
-      right: 0.27778em;
-      top: 1em;
-    }
-
-    .tobi>button.tobi__close svg {
-      height: 3.33333em;
-      width: 3.33333em;
-    }
-
-    .tobi>button:disabled,
-    .tobi>button[aria-hidden="true"] {
-      display: none;
-    }
-
-    .tobi__counter {
-      background-color: transparent;
-      color: #fff;
-      font-size: 1.11111em;
-      left: 1em;
-      line-height: 1;
-      position: absolute;
-      top: 2.22222em;
-      z-index: 1;
-    }
-
-    .tobi__counter[aria-hidden="true"] {
-      display: none;
-    }
-
-    .tobi-loader {
-      display: inline-block;
-      height: 5.55556em;
-      left: calc(50% - 2.77778em);
-      position: absolute;
-      top: calc(50% - 2.77778em);
-      width: 5.55556em;
-    }
-
-    .tobi-loader::before {
-      animation: spin 1s infinite;
-      border-radius: 100%;
-      border: 0.22222em solid #949ba3;
-      border-top-color: #fff;
-      bottom: 0;
-      content: "";
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-      z-index: 1;
-    }
-
-    .tobi-zoom {
-      border: 0;
-      box-shadow: none;
-      display: inline-block;
-      position: relative;
-      text-decoration: none;
-    }
-
-    .tobi-zoom img {
-      display: block;
-    }
-
-    .tobi-zoom__icon {
-      bottom: 0;
-      color: #fff;
-      line-height: 1;
-      position: absolute;
-      right: 0;
-      padding: 10;
-
-    }
-
-    .tobi-zoom__icon svg {
-      color: #fff;
-      fill: none;
-      height: 1.11111em;
-      padding: 0.22222em;
-      pointer-events: none;
-      stroke-linecap: square;
-      stroke-linejoin: miter;
-      stroke-width: 2;
-      stroke: #fff;
-      width: 1.11111em;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
-  <style>
+  @media (max-width: 768px) {
     :root {
-      --font-xl: 42px;
-      --font-lg: 24px;
-      --font-md: 20px;
-      --font-sm: 18px;
-      --font-xs: 16px;
-      --font-xxs: 14px;
+      --font-xl: 18px;
+      --font-lg: 16px;
+      --font-md: 14px;
+      --font-sm: 12px;
+      --font-xs: 12px;
+      --font-xxs: 12px;
     }
+  }
 
-    @media (max-width: 768px) {
-      :root {
-        --font-xl: 18px;
-        --font-lg: 16px;
-        --font-md: 14px;
-        --font-sm: 12px;
-        --font-xs: 12px;
-        --font-xxs: 12px;
-      }
-    }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: #ffffff;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-size: var(--font-md);
+    background-color: #000000;
+    background-size: cover;
+    background-position-x: 20vw;
+    background-position-y: -10vh;
+    background-repeat: no-repeat;
+    line-height: 1.4;
+  }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-      color: #ffffff;
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-      font-size: var(--font-md);
-      background-color: #000000;
-      background-size: cover;
-      background-position-x: 20vw;
-      background-position-y: -10vh;
-      background-repeat: no-repeat;
-      line-height: 1.4;
-    }
+  main {
+    flex: 1;
+    width: 100%;
+  }
 
-    main {
-      flex: 1;
-      width: 100%;
-    }
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
 
-    a {
-      color: #ffffff;
-      text-decoration: none;
-    }
+  a:hover {
+    color: #516486;
+    ;
+  }
 
-    a:hover {
-      color: #516486;;
-    }
+  .container {
+    max-width: 960px;
+    padding: 0 30px;
+    margin: auto;
+  }
 
-    .container {
-      max-width: 960px;
-      padding: 0 30px;
-      margin: auto;
-    }
+  h1,
+  h2 {
+    font-family: "SF Pro Display", sans-serif;
+  }
 
-    h1,
-    h2 {
-      font-family: "SF Pro Display", sans-serif;
-    }
+  h2 {
+    font-size: 30px !important;
+  }
 
-    h2 {
-      font-size: 30px !important;
-    }
+  .container-desktop {
+    max-width: 960px;
+    padding: 0 30px;
+    margin: auto;
+  }
 
+  @media (max-width: 768px) {
     .container-desktop {
-      max-width: 960px;
-      padding: 0 30px;
-      margin: auto;
+      max-width: 100%;
+      padding: 0;
     }
+  }
 
-    @media (max-width: 768px) {
-      .container-desktop {
-        max-width: 100%;
-        padding: 0;
-      }
-    }
+  .app__header {
+    display: flex;
+    flex-direction: row;
+    margin-top: 128px;
+    margin-bottom: 128px;
+    align-items: top;
+  }
 
+  @media (max-width: 768px) {
     .app__header {
-      display: flex;
-      flex-direction: row;
-      margin-top: 128px;
-      margin-bottom: 128px;
-      align-items: top;
+      align-items: flex-start;
+      margin-top: 32px;
+      margin-bottom: 16px;
     }
+  }
 
-    @media (max-width: 768px) {
-      .app__header {
-        align-items: flex-start;
-        margin-top: 32px;
-        margin-bottom: 16px;
-      }
-    }
+  .blue-link {
+    color: #7fabff;
+  }
 
-    .blue-link {
-      color: #7fabff;
-    }
+  .app__logo-wrapper {
+    display: inline-block;
+    background-size: contain;
+    max-width: 180px;
+    max-height: 180px;
+    padding: 1px;
+    margin-right: 64px;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+  }
 
+  @media (max-width: 768px) {
     .app__logo-wrapper {
-      display: inline-block;
-      background-size: contain;
-      max-width: 180px;
-      max-height: 180px;
-      padding: 1px;
-      margin-right: 64px;
-      width: 100%;
-      height: 100%;
-      background-repeat: no-repeat;
+      max-width: 100px;
+      max-height: 100px;
+      margin-right: 16px;
     }
+  }
 
-    @media (max-width: 768px) {
-      .app__logo-wrapper {
-        max-width: 100px;
-        max-height: 100px;
-        margin-right: 16px;
-      }
-    }
+  .app__logo {
+    width: 100%;
+    height: auto;
+  }
 
-    .app__logo {
-      width: 100%;
-      height: auto;
-    }
+  .app__name {
+    font-size: var(--font-xl);
+    margin: 0;
+  }
 
-    .app__name {
-      font-size: var(--font-xl);
-      margin: 0;
-    }
+  .app__description {
+    font-size: var(--font-lg);
+    color: #868686;
+    margin-top: 0px;
+  }
 
+  @media (max-width: 768px) {
     .app__description {
-      font-size: var(--font-lg);
-      color: #868686;
-      margin-top: 0px;
+      margin-top: 8px;
+      margin-bottom: 0;
     }
+  }
 
-    @media (max-width: 768px) {
-      .app__description {
-        margin-top: 8px;
-        margin-bottom: 0;
-      }
-    }
+  .app__screenshots-list {
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px 200px 200px 200px 200px;
+    grid-column-gap: 20px;
+    padding: 30px 0;
+  }
 
+  @media (max-width: 768px) {
     .app__screenshots-list {
-      display: grid;
-      grid-template-columns: 200px 200px 200px 200px 200px 200px 200px 200px;
-      grid-column-gap: 20px;
-      padding: 30px 0;
+      padding: 32px;
+      width: 800px;
     }
+  }
 
-    @media (max-width: 768px) {
-      .app__screenshots-list {
-        padding: 32px;
-        width: 800px;
-      }
-    }
+  .app__screenshot {
+    width: 100%;
+    border: 1px solid #858585;
+    border-radius: 16px;
+    box-shadow: 0 12px 48px rgba(17, 16, 62, 0.12);
+    transition: all 0.3s ease-in-out;
+    transform: scale(1);
+    cursor: pointer;
+  }
 
-    .app__screenshot {
-      width: 100%;
-      border: 1px solid #858585;
-      border-radius: 16px;
-      box-shadow: 0 12px 48px rgba(17, 16, 62, 0.12);
-      transition: all 0.3s ease-in-out;
-      transform: scale(1);
-      cursor: pointer;
-    }
+  .app__screenshot:hover {
+    box-shadow: 0 24px 48px rgba(17, 16, 62, 0.12);
+    transform: scale(1.05);
+  }
 
-    .app__screenshot:hover {
-      box-shadow: 0 24px 48px rgba(17, 16, 62, 0.12);
-      transform: scale(1.05);
-    }
+  .app__screenshots-wrapper {
+    overflow-y: auto;
+  }
 
-    .app__screenshots-wrapper {
-      overflow-y: auto;
-    }
+  .app__buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 
+  .app__buttons--mobile {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
     .app__buttons {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+      margin-left: 0;
+      margin-bottom: 64px;
     }
 
     .app__buttons--mobile {
+      display: flex;
+      justify-content: left;
+    }
+
+    .app__buttons--desktop {
       display: none;
     }
+  }
 
-    @media (max-width: 768px) {
-      .app__buttons {
-        margin-left: 0;
-        margin-bottom: 64px;
-      }
+  .app__button-ios img {
+    width: 200px;
+  }
 
-      .app__buttons--mobile {
-        display: flex;
-        justify-content: left;
-      }
+  .app__button-ios img:hover {
+    filter: brightness(70%);
+  }
 
-      .app__buttons--desktop {
-        display: none;
-      }
+  .app__button-web {
+    margin-left: 12px;
+  }
+
+  .app__button-web img {
+    width: 200px;
+  }
+
+  .app__button-web img:hover {
+    filter: brightness(70%);
+  }
+
+  .app__button-download img {
+    height: 59.2667;
+  }
+
+  .app__button-download img:hover {
+    filter: brightness(70%);
+  }
+
+  .app__button-download {
+    margin-left: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .app__button-ios img {
+      width: 112px;
     }
 
-    .app__button-ios img {
-  width: 200px;
-}
+    .app__button-web {
+      margin-left: 8px;
+    }
 
-.app__button-ios img:hover {
-  filter: brightness(70%);
-}
+    .app__button-web img {
+      width: 112px;
+    }
 
-.app__button-web {
-  margin-left: 12px;
-}
-
-.app__button-web img {
-  width: 200px;
-}
-
-.app__button-web img:hover {
-  filter: brightness(70%);
-}
-
-.app__button-download img {
-  height: 59.2667;
-}
-
-.app__button-download img:hover {
-  filter: brightness(70%);
-}
-
-.app__button-download {
-  margin-left: 12px;
-}
-
-    @media (max-width: 768px) {
-      .app__button-ios img {
-        width: 112px;
-      }
-
-      .app__button-web {
-        margin-left: 8px;
-      }
-
-      .app__button-web img {
-        width: 112px;
-      }
-      .app__button-download img {
+    .app__button-download img {
       height: 33.18;
 
 
 
     }
 
-    }
+  }
 
-    .app__section-title {
-      font-size: var(--font-lg);
-    }
+  .app__section-title {
+    font-size: var(--font-lg);
+  }
 
+  .app__section {
+    margin-bottom: 128px;
+  }
+
+  @media (max-width: 768px) {
     .app__section {
-      margin-bottom: 128px;
+      margin-bottom: 64px;
     }
+  }
 
-    @media (max-width: 768px) {
-      .app__section {
-        margin-bottom: 64px;
-      }
-    }
+  .footer {
+    padding: 16px 0;
+    font-size: var(--font-xs) !important;
+  }
 
-    .footer {
-      padding: 16px 0;
-      font-size: var(--font-xs) !important;
-    }
+  .footer a {
+    font-size: var(--font-xs) !important;
+  }
 
-    .footer a {
-      font-size: var(--font-xs) !important;
-    }
+  .footer__container {
+    color: #ffffff;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
 
+  @media (max-width: 768px) {
     .footer__container {
-      color: #ffffff;
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column-reverse;
+      align-items: flex-start;
     }
+  }
 
-    @media (max-width: 768px) {
-      .footer__container {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-      }
-    }
+  .footer__links {
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+  }
 
-    .footer__links {
-      list-style: none;
-      display: flex;
-      padding-left: 0;
+  @media (max-width: 768px) {
+    .footer__link {
+      margin-left: 0;
+      margin-right: 8px;
     }
-
-    @media (max-width: 768px) {
-      .footer__link {
-        margin-left: 0;
-        margin-right: 8px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
@@ -614,8 +620,9 @@
         <h1 class="app__name">CercubePlusExtra</h1>
         <p class="app__description">Cercube with extra features!</p>
         <div class="app__buttons app__buttons--desktop">
-          <a class="app__button-ios" href="altstore://source/?url=https://raw.githubusercontent.com/CercubeSource/CercubePlusAltstore/main/apps.json" target="_blank"
-            title="Add to Altstore">
+          <a class="app__button-ios"
+            href="altstore://source/?url=https://raw.githubusercontent.com/CercubeSource/CercubePlusAltstore/main/apps.json"
+            target="_blank" title="Add to Altstore">
             <img alt="Add to Altstore" src="./images/image_1.png" />
           </a>
           <a class="app__button-web" href="https://github.com/Balackburn/CercubePlusExtra" target="_blank"
@@ -629,7 +636,9 @@
       </div>
     </header>
     <div class="app__buttons app__buttons--mobile container">
-      <a class="app__button-ios" href="altstore://source/?url=https://raw.githubusercontent.com/CercubeSource/CercubePlusAltstore/main/apps.json" target="_blank" title="Add to Altstore">
+      <a class="app__button-ios"
+        href="altstore://source/?url=https://raw.githubusercontent.com/CercubeSource/CercubePlusAltstore/main/apps.json"
+        target="_blank" title="Add to Altstore">
         <img alt="Add to Altstore" src="./images/image_4.png" />
       </a>
       <a class="app__button-web" href="https://github.com/Balackburn/CercubePlusExtra" target="_blank"
@@ -639,7 +648,7 @@
       <a class="app__button-download" id="download-link" href="#" target="_blank" title=".ipa download">
         <img alt=".ipa download" src="./images/image_3.png" />
       </a>
-      
+
     </div>
     <section class="app__screenshots app__section">
       <div class="container">
@@ -649,28 +658,28 @@
         <div class="app__screenshots-list">
           <a class="lightbox" href="./images/image_6.png">
             <img class="app__screenshot" src="./images/image_6.png" />
-        </a>
-        <a class="lightbox" href="./images/image_7.png">
+          </a>
+          <a class="lightbox" href="./images/image_7.png">
             <img class="app__screenshot" src="./images/image_7.png" />
-        </a>
-        <a class="lightbox" href="./images/image_8.png">
+          </a>
+          <a class="lightbox" href="./images/image_8.png">
             <img class="app__screenshot" src="./images/image_8.png" />
-        </a>
-        <a class="lightbox" href="./images/image_9.png">
+          </a>
+          <a class="lightbox" href="./images/image_9.png">
             <img class="app__screenshot" src="./images/image_9.png" />
-        </a>
-        <a class="lightbox" href="./images/image_10.png">
+          </a>
+          <a class="lightbox" href="./images/image_10.png">
             <img class="app__screenshot" src="./images/image_10.png" />
-        </a>
-        <a class="lightbox" href="./images/image_11.png">
+          </a>
+          <a class="lightbox" href="./images/image_11.png">
             <img class="app__screenshot" src="./images/image_11.png" />
-        </a>
-        <a class="lightbox" href="./images/image_12.png">
+          </a>
+          <a class="lightbox" href="./images/image_12.png">
             <img class="app__screenshot" src="./images/image_12.png" />
-        </a>
-        <a class="lightbox" href="./images/image_13.png">
+          </a>
+          <a class="lightbox" href="./images/image_13.png">
             <img class="app__screenshot" src="./images/image_13.png" />
-        </a>
+          </a>
         </div>
       </div>
     </section>
@@ -678,80 +687,84 @@
 
       <summary>
         <h2 class="app__section-title">Description:</h2>
-<div class="app__fulldescription-content">
-         
-<summary><strong>A modified version of Cercube (by <strong><a href="https://github.com/majd"
-  class="blue-link">@majd</a></strong>) supercharged with +15 tweaks :</strong></summary>
-          
-  <ul>
-    <li><a href="https://github.com/majd"
-      class="blue-link"><strong>Cercube:</strong></a> Block all advertisements & Enable background playback. Set default player
-      quality on WiFi & Cellular. Save videos in high resolution, save videos as audio-only, save public
-      playlists (beta). And many more...</li>
-    <br>
-    <li><strong><a href="https://github.com/Galactic-Dev/iSponsorBlock"
-          class="blue-link">iSponsorBlock:</a></strong> Skips annoying sponsor ads inside videos. iSponsorBlock
-      is based on <a href="https://sponsor.ajay.app/">SponsorBlock engine</a>. Basically, this
-      is the iOS version of the SponsorBlock extension.</li>
-    <br>
-    <li><strong><a href="https://github.com/PoomSmart/YouPiP" class="blue-link">YouPiP:</a></strong> Enable
-      YouTube's native PiP. More options are in YouTube Settings => General.</li>
-    <br>
-    <li><strong><a href="https://github.com/PoomSmart/YTUHD" class="blue-link">YTUHD:</a></strong> Unlock VP9
-      codec and in effect, enables video quality of 2K and 4K. You can configure YTUHD in YouTube's Settings -
-      Video quality preferences.</li>
-    <br>
-    <li><strong><a href="https://github.com/PoomSmart/Return-YouTube-Dislikes" class="blue-link">YouTube Dislike
-          Return:</a></strong> Brings back Dislike counts under YouTube videos using ReturnYoutubeDislike's API.
-    </li>
-    <br>
-    <li><strong><a href="https://github.com/PoomSmart/YTClassicVideoQuality" class="blue-link" class="blue-link">YTClassicVideoQuality</a></strong> Brings back the old video quality selector, which is a lot
-      better than the new one.</li>
-      
-    <br>
-    <li><strong><a href="https://github.com/level3tjg/YTNoHoverCards"
-          class="blue-link">YTNoHoverCards:</a></strong> Offer an option to enable/disable the annoying
-      suggested videos show up at the end of the videos.</li>
-    <br>
-    <li><strong><a href="https://github.com/PoomSmart/YTABGoodies"
-      class="blue-link">YTABGoodies:</a></strong> Allow you to disable some YouTube A/B testing features. It is a
-      combination of several tweaks, such as YouAreThere, YouRememberCaption, and YTNoCheckLocalNetwork.
-    </li>
-    <br>
-    <li><strong><a href="https://github.com/PoomSmart/NoYTPremium" class="blue-link">NOYTPremium:</a></strong>
-      Remove YouTube Premium upsell alerts.</li>
-    <br>
-    <li><strong><a href="https://github.com/lyvendia/YTSpeed" class="blue-link" class="blue-link">YTSpeed</a></strong> Add 2.25x to 5x playback speed options in the video player.</li>
-    <br>
-    <li><strong><a href="https://github.com/level3tjg/YTMiniplayerEnabler"
-          class="blue-link">YTMiniplayerEnabler:</a></strong> Enable Miniplayer for all YouTube videos.</li>
-    <br>
-    <li><strong><a href="https://github.com/therealFoxster/DontEatMyContent"
-          class="blue-link">DontEatMyContent:</a></strong> Prevent the notch/Dynamic Island from munching on
-      2:1 video content in YouTube.</li>
-    <br>
-    <li><strong><a href="https://github.com/PoomSmart/YTShortsProgress"
-          class="blue-link">YTShortsProgress:</a></strong> Always enable progress bar and scrubbing in
-      YouTube Shorts (iPhone only).</li>
-    <br>
-    <li><strong><a href="https://github.com/PoomSmart/YTABConfig" class="blue-link">YTABConfig:</a></strong>
-      Allow user to control over YouTube A/B testing flags.</li>
-    <br>
-    <li><strong><a href="https://github.com/PoomSmart/YouMute" class="blue-link">YouMute:</a></strong>
-      Mute/unmute videos in the YouTube Video Player directly.</li>
-    <br>
-    <li><strong><a href="https://github.com/arichorn/LowContrastMode"
-          class="blue-link">LowContrastMode:</a></strong> Makes the YouTube Interface Low Contrast as
-      possible to make it easier on the eyes.</li>
-    <br>
-    <li><strong><a href="https://github.com/MiRO92/YTNoShorts" class="blue-link">YTNoShorts:</a></strong>
-      Disable YouTube Shorts.</li>
-    <br>
-    <li><strong><a href="https://github.com/Galactic-Dev/BigYTMiniPlayer"
-          class="blue-link">BigYTMiniPlayer:</a></strong> Enable a bigger YouTube Miniplayer.</li>
-  </ul>
-  </ul>
-</div>
+        <div class="app__fulldescription-content">
+
+          <summary><strong>A modified version of Cercube (by <strong><a href="https://github.com/majd"
+                  class="blue-link">@majd</a></strong>) supercharged with +15 tweaks :</strong></summary>
+
+          <ul>
+            <li><a href="https://github.com/majd" class="blue-link"><strong>Cercube:</strong></a> Block all
+              advertisements & Enable background playback. Set default player
+              quality on WiFi & Cellular. Save videos in high resolution, save videos as audio-only, save public
+              playlists (beta). And many more...</li>
+            <br>
+            <li><strong><a href="https://github.com/Galactic-Dev/iSponsorBlock"
+                  class="blue-link">iSponsorBlock:</a></strong> Skips annoying sponsor ads inside videos. iSponsorBlock
+              is based on <a href="https://sponsor.ajay.app/">SponsorBlock engine</a>. Basically, this
+              is the iOS version of the SponsorBlock extension.</li>
+            <br>
+            <li><strong><a href="https://github.com/PoomSmart/YouPiP" class="blue-link">YouPiP:</a></strong> Enable
+              YouTube's native PiP. More options are in YouTube Settings => General.</li>
+            <br>
+            <li><strong><a href="https://github.com/PoomSmart/YTUHD" class="blue-link">YTUHD:</a></strong> Unlock VP9
+              codec and in effect, enables video quality of 2K and 4K. You can configure YTUHD in YouTube's Settings -
+              Video quality preferences.</li>
+            <br>
+            <li><strong><a href="https://github.com/PoomSmart/Return-YouTube-Dislikes" class="blue-link">YouTube Dislike
+                  Return:</a></strong> Brings back Dislike counts under YouTube videos using ReturnYoutubeDislike's API.
+            </li>
+            <br>
+            <li><strong><a href="https://github.com/PoomSmart/YTClassicVideoQuality" class="blue-link"
+                  class="blue-link">YTClassicVideoQuality</a></strong> Brings back the old video quality selector, which
+              is a lot
+              better than the new one.</li>
+
+            <br>
+            <li><strong><a href="https://github.com/level3tjg/YTNoHoverCards"
+                  class="blue-link">YTNoHoverCards:</a></strong> Offer an option to enable/disable the annoying
+              suggested videos show up at the end of the videos.</li>
+            <br>
+            <li><strong><a href="https://github.com/PoomSmart/YTABGoodies" class="blue-link">YTABGoodies:</a></strong>
+              Allow you to disable some YouTube A/B testing features. It is a
+              combination of several tweaks, such as YouAreThere, YouRememberCaption, and YTNoCheckLocalNetwork.
+            </li>
+            <br>
+            <li><strong><a href="https://github.com/PoomSmart/NoYTPremium" class="blue-link">NOYTPremium:</a></strong>
+              Remove YouTube Premium upsell alerts.</li>
+            <br>
+            <li><strong><a href="https://github.com/lyvendia/YTSpeed" class="blue-link"
+                  class="blue-link">YTSpeed</a></strong> Add 2.25x to 5x playback speed options in the video player.
+            </li>
+            <br>
+            <li><strong><a href="https://github.com/level3tjg/YTMiniplayerEnabler"
+                  class="blue-link">YTMiniplayerEnabler:</a></strong> Enable Miniplayer for all YouTube videos.</li>
+            <br>
+            <li><strong><a href="https://github.com/therealFoxster/DontEatMyContent"
+                  class="blue-link">DontEatMyContent:</a></strong> Prevent the notch/Dynamic Island from munching on
+              2:1 video content in YouTube.</li>
+            <br>
+            <li><strong><a href="https://github.com/PoomSmart/YTShortsProgress"
+                  class="blue-link">YTShortsProgress:</a></strong> Always enable progress bar and scrubbing in
+              YouTube Shorts (iPhone only).</li>
+            <br>
+            <li><strong><a href="https://github.com/PoomSmart/YTABConfig" class="blue-link">YTABConfig:</a></strong>
+              Allow user to control over YouTube A/B testing flags.</li>
+            <br>
+            <li><strong><a href="https://github.com/PoomSmart/YouMute" class="blue-link">YouMute:</a></strong>
+              Mute/unmute videos in the YouTube Video Player directly.</li>
+            <br>
+            <li><strong><a href="https://github.com/arichorn/LowContrastMode"
+                  class="blue-link">LowContrastMode:</a></strong> Makes the YouTube Interface Low Contrast as
+              possible to make it easier on the eyes.</li>
+            <br>
+            <li><strong><a href="https://github.com/MiRO92/YTNoShorts" class="blue-link">YTNoShorts:</a></strong>
+              Disable YouTube Shorts.</li>
+            <br>
+            <li><strong><a href="https://github.com/Galactic-Dev/BigYTMiniPlayer"
+                  class="blue-link">BigYTMiniPlayer:</a></strong> Enable a bigger YouTube Miniplayer.</li>
+          </ul>
+          </ul>
+        </div>
     </section>
   </main>
   <footer class="footer">
@@ -759,9 +772,12 @@
       <div class="footer__container">
         <ul class="footer__links">
           <li class="footer__link">
-            <p>This app was forked from <strong><a href="https://github.com/arichorn/YouTubeRebornPlus" class="blue-link" target="_blank">@arichorn</a></strong>, who himself forked it from <strong><a href="https://github.com/qnblackcat/uYouPlus" class="blue-link" target="_blank">@qnblackcat</a></strong>, so thanks to them.</p>
+            <p>This app was forked from <strong><a href="https://github.com/arichorn/YouTubeRebornPlus"
+                  class="blue-link" target="_blank">@arichorn</a></strong>, who himself forked it from <strong><a
+                  href="https://github.com/qnblackcat/uYouPlus" class="blue-link"
+                  target="_blank">@qnblackcat</a></strong>, so thanks to them.</p>
           </li>
-          
+
         </ul>
       </div>
     </div>
@@ -777,15 +793,15 @@
     const repoOwner = "Balackburn";
     const repoName = "CercubePlusExtra";
     const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/releases/latest`;
-  
+
     async function updateDownloadLink() {
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();
-  
+
         // Find the asset with the ".ipa" file extension
         const ipaAsset = data.assets.find((asset) => asset.name.endsWith('.ipa'));
-  
+
         if (ipaAsset) {
           // Update download link for both desktop and mobile views
           const downloadLinks = document.querySelectorAll('#download-link, .app__button-download');
@@ -799,7 +815,7 @@
         console.error("Error fetching latest release information:", error);
       }
     }
-  
+
     updateDownloadLink();
   </script>
 </body>
